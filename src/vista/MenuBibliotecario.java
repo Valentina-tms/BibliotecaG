@@ -1,0 +1,264 @@
+
+package vista;
+
+/**
+ *
+ * @author User
+ */
+public class MenuBibliotecario extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuBibliotecario.class.getName());
+
+    /**
+     * Creates new form MenuBibliotecario
+     */
+    public MenuBibliotecario() {
+    initComponents();
+
+    btnGestionarUsuarios.addActionListener(this::btnGestionarUsuariosActionPerformed);
+    btnGestionarLibros.addActionListener(this::btnGestionarLibrosActionPerformed);
+    btnPrestamosDevoluciones.addActionListener(this::btnPrestamosDevolucionesActionPerformed);
+    btnInformes.addActionListener(this::btnInformesActionPerformed);
+    btnCerrarSesion.addActionListener(this::btnCerrarSesionActionPerformed);
+
+    configurarBtnAyuda();
+    
+    EstiloUI.aplicarFondoVentana(this);
+    EstiloUI.estilizarTitulo(lblMenuBibliotecario);
+    EstiloUI.estilizarBotonPrimario(btnGestionarLibros);
+    EstiloUI.estilizarBotonPrimario(btnGestionarUsuarios);
+    EstiloUI.estilizarBotonPrimario(btnPrestamosDevoluciones);
+    EstiloUI.estilizarBotonPrimario(btnInformes);
+    EstiloUI.estilizarBotonSecundario(btnCerrarSesion);
+    EstiloUI.estilizarBotonAyuda(btnAyuda);
+    setTitle("Sistema Biblioteca — Bibliotecario");
+    
+    setLocationRelativeTo(null);
+    }
+    
+    private void btnGestionarUsuariosActionPerformed(
+        java.awt.event.ActionEvent evt) {
+
+    GestionUsuarios ventana =
+            new GestionUsuarios(true);
+
+    ventana.setVisible(true);
+    }
+    
+    private void btnGestionarLibrosActionPerformed(
+        java.awt.event.ActionEvent evt) {
+
+    GestionLibros ventana =
+            new GestionLibros();
+
+    ventana.setVisible(true);
+    }
+    
+    private void btnPrestamosDevolucionesActionPerformed(
+        java.awt.event.ActionEvent evt) {
+
+    GestionPrestamos ventana =
+            new GestionPrestamos();
+
+    ventana.setVisible(true);
+    }
+    
+    private void btnInformesActionPerformed(
+        java.awt.event.ActionEvent evt) {
+
+    Informes ventana =
+            new Informes();
+
+    ventana.setVisible(true);
+    }
+    
+    private void btnCerrarSesionActionPerformed(
+        java.awt.event.ActionEvent evt) {
+
+    int confirmar = javax.swing.JOptionPane.showConfirmDialog(
+    this,
+    "¿Deseas cerrar sesión?",
+    "Cerrar Sesión",
+    javax.swing.JOptionPane.YES_NO_OPTION
+    );
+    if (confirmar == javax.swing.JOptionPane.YES_OPTION) {
+    new Login().setVisible(true);
+    this.dispose();
+    }
+    }
+
+    private void configurarBtnAyuda() {
+    btnAyuda.setBackground(new java.awt.Color(70, 130, 180));
+    btnAyuda.setForeground(java.awt.Color.WHITE);
+    btnAyuda.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 13));
+    btnAyuda.setFocusPainted(false);
+    btnAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnAyuda.addActionListener(e -> mostrarAyuda());
+
+    javax.swing.KeyStroke ctrlH = javax.swing.KeyStroke.getKeyStroke(
+        java.awt.event.KeyEvent.VK_H,
+        java.awt.event.InputEvent.CTRL_DOWN_MASK
+    );
+    getRootPane().getInputMap(
+        javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW
+    ).put(ctrlH, "abrirAyuda");
+    getRootPane().getActionMap().put("abrirAyuda",
+        new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                mostrarAyuda();
+            }
+        }
+    );
+}
+
+private void mostrarAyuda() {
+    String contenido =
+        "<html><body style='font-family:SansSerif; padding:8px'>"
+        + "<h3 style='color:#2c6fad'> MENÚ BIBLIOTECARIO</h3>"
+        + "<hr>"
+        + "<p>Como bibliotecario tienes acceso a las siguientes funciones:</p>"
+        + "<ul>"
+        + "<li><b>Gestionar Libros</b> — Registra, consulta, actualiza "
+        + "y elimina libros del catálogo.</li>"
+        + "<li><b>Gestionar Usuarios</b> — Administra los usuarios "
+        + "registrados (solo rol USUARIO).</li>"
+        + "<li><b>Gestionar Préstamos y Devoluciones</b> — Registra "
+        + "préstamos y procesa devoluciones.</li>"
+        + "<li><b>Generar Informes</b> — Consulta estadísticas de "
+        + "préstamos, devoluciones y mora.</li>"
+        + "<li><b>Cerrar Sesión</b> — Sale del sistema y regresa al Login.</li>"
+        + "</ul>"
+        + "<br>"
+        + "<p style='color:gray'>💡 Atajo de teclado: <b>Ctrl+H</b> "
+        + "para abrir esta ayuda en cualquier momento.</p>"
+        + "</body></html>";
+
+    javax.swing.JLabel lbl = new javax.swing.JLabel(contenido);
+    lbl.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+
+    javax.swing.JOptionPane.showMessageDialog(
+        this, lbl,
+        "Ayuda — Menú Bibliotecario",
+        javax.swing.JOptionPane.INFORMATION_MESSAGE
+    );
+    }
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        lblMenuBibliotecario = new javax.swing.JLabel();
+        btnGestionarLibros = new javax.swing.JButton();
+        btnGestionarUsuarios = new javax.swing.JButton();
+        btnPrestamosDevoluciones = new javax.swing.JButton();
+        btnInformes = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblMenuBibliotecario.setText("Menú Bibliotecario");
+
+        btnGestionarLibros.setText("Gestionar Libros");
+
+        btnGestionarUsuarios.setText("Gestionar Usuarios");
+
+        btnPrestamosDevoluciones.setText("Gestionar Prestamos y Devoluciones");
+
+        btnInformes.setText("Generar Informes");
+
+        btnCerrarSesion.setText("Cerrar Sesión");
+
+        btnAyuda.setText("?");
+        btnAyuda.setToolTipText("Ayuda\nCtrl + H");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGestionarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGestionarLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPrestamosDevoluciones)
+                            .addComponent(btnInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(btnCerrarSesion)))
+                .addContainerGap(91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblMenuBibliotecario, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(btnAyuda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMenuBibliotecario)
+                .addGap(18, 18, 18)
+                .addComponent(btnGestionarLibros)
+                .addGap(18, 18, 18)
+                .addComponent(btnGestionarUsuarios)
+                .addGap(18, 18, 18)
+                .addComponent(btnPrestamosDevoluciones)
+                .addGap(18, 18, 18)
+                .addComponent(btnInformes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion)
+                .addGap(27, 27, 27))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new MenuBibliotecario().setVisible(true));
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnGestionarLibros;
+    private javax.swing.JButton btnGestionarUsuarios;
+    private javax.swing.JButton btnInformes;
+    private javax.swing.JButton btnPrestamosDevoluciones;
+    private javax.swing.JLabel lblMenuBibliotecario;
+    // End of variables declaration//GEN-END:variables
+}
